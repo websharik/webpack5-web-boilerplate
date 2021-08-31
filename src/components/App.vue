@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" data-server-rendered="true">
     <span class="title">Hello world!</span><br />
     <span>{{ $tc('seconds', seconds) }}</span
     ><br />
