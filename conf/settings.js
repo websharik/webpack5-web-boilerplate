@@ -71,7 +71,7 @@ export const OBFUSCATOR = {
     //splitStrings: false, //разбивать строки на части
     //splitStringsChunkLength: 8, //длина частей разбитых строк
     stringArray: true, //превращать строки в массивы "Hello World" => _0x12c456[0x1]
-    //stringArrayEncoding: 'rc4', //шифрование строк-массивов
+    stringArrayEncoding: ['rc4'], //шифрование строк-массивов
     //base64 (легко найти нужное знаечние)
     //rc4 (30-50% медленнее но сложнее)
     stringArrayThreshold: 1, //как часто строки будут шифроваться в массивы
@@ -79,10 +79,7 @@ export const OBFUSCATOR = {
     //unicodeEscapeSequence: false, //преобразование кодировки строк (сильно увеличивает размер но легко обходится)
     //log: false, //логирование обусификации
     //sourceMap: false //Obfuscators sourcemaps
-    target: 'browser' //где будет использоваться (для лучшего результата)
-    //browser;
-    //browser-no-eval;
-    //node
+    target: 'browser' //где будет использоваться (для лучшего результата) browser, browser-no-eval, node
   },
   excludes: ['scripts/vendors.js']
 }

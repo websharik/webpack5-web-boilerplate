@@ -21,11 +21,11 @@ const productionWebPackConfig = merge(baseWebPackConfig, {
       patterns: [{ from: `${PATHS.src}/static`, to: `${PATHS.dist}` }]
     }),
     //obfuscator
-    () => {
-      return OBFUSCATOR.enabled
+    ...[
+      OBFUSCATOR.enabled
         ? new JavaScriptObfuscator(OBFUSCATOR.config, OBFUSCATOR.excludes)
         : null
-    },
+    ],
     //prerender
     ...PRERENDER.items.map(item => {
       return new PrerenderSPAPlugin({
