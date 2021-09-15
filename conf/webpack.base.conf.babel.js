@@ -5,7 +5,7 @@ import ImageminPlugin from 'imagemin-webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+//import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 import {
   ALIASES,
@@ -77,7 +77,7 @@ export default {
               hotReload: true
             }
           },
-          'vue-svg-inline-loader'
+          /*'vue-svg-inline-loader'*/
         ]
       },
       {
@@ -141,11 +141,11 @@ export default {
     new MiniCssExtractPlugin({
       filename: `styles/[name].css` //[hash]
     }),
-    new BundleAnalyzerPlugin({
+    /*new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
       generateStatsFile: true,
       statsOptions: { source: false }
-    }),
+    }),*/
     //optimize images
     () => {
       return isProd

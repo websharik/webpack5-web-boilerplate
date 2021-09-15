@@ -21,11 +21,11 @@ const productionWebPackConfig = merge(baseWebPackConfig, {
       patterns: [{ from: `${PATHS.src}/static`, to: `${PATHS.dist}` }]
     }),
     //obfuscator
-    ...[
-      OBFUSCATOR.enabled
-        ? new JavaScriptObfuscator(OBFUSCATOR.config, OBFUSCATOR.excludes)
-        : null
-    ],
+    (() => {
+      if (OBFUSCATOR.enabled) {
+        return new JavaScriptObfuscator(OBFUSCATOR.config, OBFUSCATOR.excludes)
+      } else return () => {}
+    })(),
     //prerender
     ...PRERENDER.items.map(item => {
       return new PrerenderSPAPlugin({
@@ -35,9 +35,10 @@ const productionWebPackConfig = merge(baseWebPackConfig, {
         routes: item.routes,
         postProcess(renderedRoute) {
           let DOM = new JSDOM(renderedRoute.html)
-          renderedRoute.html = DOM.window.document.getElementById(
-            item.elementId
-          ).outerHTML
+          if (item.selector)
+            renderedRoute.html = DOM.window.document.querySelector(
+              item.selector
+            ).outerHTML
           /*let dir = path.join(PATHS.dist, `prerender/${item.elementId}`)
                     let filename = renderedRoute.route === '/' ? 'index' : renderedRoute.route
                     renderedRoute.outputPath = path.join(dir, `${filename}.html`)*/

@@ -89,6 +89,7 @@ export const PRERENDER = {
     // {
     //     template: 'app.html',
     //     elementId: 'app',
+    //     selector: '[app]',
     //     routes: ['/'],
     //     inject: {
     //         //msg: 'Hello world'
